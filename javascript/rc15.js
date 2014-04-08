@@ -9,7 +9,6 @@ define(["modernizr", "prefixfree", "services/typekit", "services/google_analytic
       registerPage();
     } else if (window.location.pathname == '/pay_for_bedding') {
       registerPage();
-      console.log("Bees");
     }
 
   }
