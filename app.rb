@@ -262,9 +262,6 @@ class Fifteen < Sinatra::Base
   end
 
  
-
-
-
   helpers do
     def partial(name, locals={})
       erb name, layout: false, locals: locals
