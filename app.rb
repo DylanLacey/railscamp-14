@@ -381,7 +381,11 @@ class Fifteen < Sinatra::Base
     entrant = Entrant.new(params[:entrant])
     if entrant.valid?
       entrant.save
-      redirect "/✌"
+      if entrant.tent
+        redirect "/tent-✌"
+      else
+        redirect '/✌'
+      end
     else
       @errors = entrant.errors
       erb :register
@@ -395,7 +399,7 @@ class Fifteen < Sinatra::Base
     entrant.ip_address = request.ip
     if entrant.valid?
       entrant.save
-      redirect "/✌"
+      redirect '/✌'
     else
       @errors = entrant.errors
       erb :scholarship
@@ -403,6 +407,12 @@ class Fifteen < Sinatra::Base
   end
 
   get '/✌' do
+    @tent = false
+    erb :thanks
+  end
+
+  get '/tent-✌' do
+    @tent = true
     erb :thanks
   end
 
