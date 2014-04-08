@@ -6,4 +6,4 @@ $: << "." << File.dirname(__FILE__)
 
 require 'app'
 
-STDERR.puts Railscamp::Thirteen::EntrantMailer.new.mail!(entrant)
+STDERR.puts Railscamp::Fifteen::EntrantMailer.new.mail!(entrant)

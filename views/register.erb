@@ -17,15 +17,27 @@
       </ol>
     </div>
   <% else %>
-    <h1>Enter the ballot</h1>
+    <h1>Enter the Bunk Ballot</h1>
+
+    <p>Bunks are available to attendees on a ballot basis.</p>
 
     <p>To enter the ballot, fill your personal and payment details in below. Your details will be stored securely by pin.net.au.</p>
 
-    <p>We'll randomly allocate the available tickets after the ballot is closed. Successful railscampers will be charged at that time and notified.</p>
+    <p>We'll randomly allocate the available tickets after the ballot is closed. Successful railscampers will be charged at that time and notified.  </p>
 
     <p>If you're unsuccessful, you won't be charged, Pin will conveniently forget your payment details, and we'll email you the bad news.</p>
 
     <p>You have until <strong>midnight (AEST) on Monday September 2</strong> to enter the ballot.</p>
+
+    <h1>Take a Tent Ticket</h1>
+
+    <% if @tents_available %>
+    <p>You can bring your own tent and bedding to camp, and your ticket will be allocated immediately upon registration.</p>
+
+    <p>Once they're all allocated that's it!  No more tent tickets are available.  You'll be charged safely and securely by pin.net.au when the Bunk Ballot concludes.</p>
+    <% else %>
+    <p>Tent tickets are sold out!  Sorry, you'll have to try your luck in the bunk ballot.</p>
+    <% end %>
 
     <p>This year we're also offering a number of scholarship tickets.
     <a href="/scholarship" class="button alternate-entry-button">Apply for a scholarship</a></p>
@@ -33,7 +45,7 @@
 
   <form method="post">
     <div class="ticket-info">
-      <div class="price">$275</div>
+      <div class="price">Max $250</div>
       <div class="price-buys">Includes accomodation &amp; meals</div>
     </div>
 
@@ -88,7 +100,7 @@
 
     <fieldset class="registration">
       <div class="registration-agreement">
-        This card will be billed $275,<br>
+        This card will be billed at most $250,<br>
         <em>only</em> if you’re successful in the ballot.
       </div>
       <button class="register-button" data-busy-text="Hold tight...">Enter the ballot</button>

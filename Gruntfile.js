@@ -25,26 +25,26 @@ module.exports = function(grunt) {
     },
 
     requirejs: {
-      rc13: {
+      rc15: {
         options: {
-          name: "rc13",
+          name: "rc15",
           baseUrl: 'javascript',
           mainConfigFile: 'javascript/config.js',
-          insertRequire: ["rc13"],
+          insertRequire: ["rc15"],
           optimize: "none",
-          out: "build/rc13.js"
+          out: "build/rc15.js"
         }
       }
     },
 
     uglify: {
-      rc13: {
+      rc15: {
         options: {
-          sourceMap: "public/js/rc13.js.map",
-          sourceMappingURL: "http://syd14.railscamps.org/js/rc13.js.map"
+          sourceMap: "public/js/rc15.js.map",
+          sourceMappingURL: "http://railscamp.herokuapp.com/js/rc15.js.map"
         },
         files: {
-          'public/js/rc13.js': ['components/requirejs/require.js', 'build/rc13.js']
+          'public/js/rc15.js': ['components/requirejs/require.js', 'build/rc15.js']
         }
       }
     },
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('javascript', ['requirejs:rc13', 'uglify:rc13']);
+  grunt.registerTask('javascript', ['requirejs:rc15', 'uglify:rc15']);
 
   grunt.registerTask('default', ['sass', 'javascript']);
   grunt.registerTask('dev', ['connect', 'watch']);

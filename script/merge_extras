@@ -19,7 +19,7 @@ CSV.foreach(rce) do |row|
   next if i == 1
 
   _date,email,name,tshirt_size,bedding = *row
-  if entrant = Railscamp::Thirteen::Entrant.with_email(email)
+  if entrant = Railscamp::Fifteen::Entrant.with_email(email)
     if entrant.needs_extras?
       puts "setting extras #{ep[entrant]}"
       entrant.update_extras!(bedding, tshirt_size)

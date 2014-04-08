@@ -2,6 +2,6 @@ if [ ! `which grunt` ]; then npm install -g grunt-cli; fi
 
 npm install
 
-createdb railscamp_13
+createdb railscamp_15
 cp .sample.env .env
 bundle

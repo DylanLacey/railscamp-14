@@ -6,7 +6,7 @@ $: << "." << File.dirname(__FILE__)
 
 require 'app'
 
-Railscamp::Thirteen::Entrant.uncharged.all.each do |entrant|
+Railscamp::Fifteen::Entrant.uncharged.all.each do |entrant|
   puts "charging #{entrant.id} #{entrant.email}"
   puts `#{File.dirname(__FILE__)}/charge #{entrant.id}`
 end

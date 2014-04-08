@@ -15,7 +15,7 @@ end
 ballot_size = ballot_size.to_i
 STDERR.puts "Ballot size: #{ballot_size}"
 
-chosen_count = Railscamp::Thirteen::Entrant.chosen.count
+chosen_count = Railscamp::Fifteen::Entrant.chosen.count
 STDERR.puts "Chosen count: #{chosen_count}"
 
 remaining_to_choose = ballot_size - chosen_count
@@ -30,5 +30,5 @@ STDERR.puts "Updating entrants #{entrants.map(&:id)} as chosen"
 chosen_time = Time.now.utc
 entrants.each {|e| e.choose!(chosen_time)}
 
-chosen_count = Railscamp::Thirteen::Entrant.chosen.count
+chosen_count = Railscamp::Fifteen::Entrant.chosen.count
 STDERR.puts "New chosen count: #{chosen_count}"

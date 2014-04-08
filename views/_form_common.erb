@@ -17,7 +17,7 @@
 
 <h2>I think I'll need the bus to get to camp</h2>
 <p>This isn't a ticket for the bus, just an indication for our planning.
-<a class="camp-location" href="https://www.google.com.au/maps?q=YMCA+Yarramundi+Youth+Camp+near+Chatswood+New+South+Wales&ll=-33.755173,150.971375&spn=0.581169,1.182404&sll=-33.795655999999994,151.18295919999997&sspn=0.02739103578552741,0.04394777335554132&t=m&dg=opt&hq=YMCA+Yarramundi+Youth+Camp&z=10" target="_blank">Camp location.</a><p>
+<a class="camp-location" href="https://www.google.com/maps/place/Kindilan+Outdoor+Education+%26+Conference+Centre/@-27.629965,153.28291,17z/data=!3m1!4b1!4m2!3m1!1s0x6b9168c7c0d3928b:0xe6d7fb4df49931c1" target="_blank">Camp location.</a><p>
 <fieldset>
   <input id="transport-bus" type="radio" name="entrant[wants_bus]" value="true" autocomplete="off" required>
   <label for="transport-bus">I want to ride the bus.</label>
@@ -25,3 +25,6 @@
   <label for="transport-other">I'm driving/riding/flying under my own steam.</label>
 </fieldset>
 
+<% if @tents_available %>
+  <%= partial :_form_bed_kind %>
+<% end %>

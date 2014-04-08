@@ -8,4 +8,4 @@ require "./app"
 require 'rack/deflater'
 use Rack::Deflater
 
-run Railscamp::Thirteen
+run Railscamp::Fifteen

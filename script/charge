@@ -10,6 +10,6 @@ entrant_id = ARGV.first || abort("Usage: #{$0} ENTRANT_ID")
 
 require 'app'
 
-entrant = Railscamp::Thirteen::Entrant[entrant_id]
+entrant = Railscamp::Fifteen::Entrant[entrant_id]
 
-STDERR.puts Railscamp::Thirteen::EntrantCharger.new.charge!(entrant)
+STDERR.puts Railscamp::Fifteen::EntrantCharger.new.charge!(entrant)

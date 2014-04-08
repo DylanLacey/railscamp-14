@@ -20,11 +20,12 @@ end
 
 
 module Railscamp
-class Thirteen < Sinatra::Base
+class Fifteen < Sinatra::Base
 
-  SUBMISSION_DEADLINE = Time.new(2013,5,21,0,0,0,"+10:00").utc
+  SUBMISSION_DEADLINE = Time.new(2014,4,12,0,0,0,"+10:00").utc
   TICKET_PRICE_CENTS = required_env_var("TICKET_PRICE_CENTS").to_i
   TICKET_PRICE_CURRENCY = "AUD"
+  TENT_TICKETS = required_env_var("TENT_SIZE").to_i
 
   configure :development do
     require 'sinatra/reloader'
@@ -57,6 +58,7 @@ class Thirteen < Sinatra::Base
       String :email, null: false
       String :dietary_reqs, text: true
       TrueClass :wants_bus, null: false
+      TrueClass :tent, null: false, default: false
 
       String :cc_name, null: false
       String :cc_address, null: false
@@ -129,7 +131,7 @@ class Thirteen < Sinatra::Base
       :cc_name, :cc_address, :cc_city, :cc_post_code, :cc_state, :cc_country,
       :card_token, :ip_address,
       :ticket_type, :notes,
-      :wants_bedding, :tshirt_size
+      :wants_bedding, :tshirt_size, :tent
     ]
 
     CHARGE_ATTRS = [ :charge_token ]
@@ -149,6 +151,14 @@ class Thirteen < Sinatra::Base
     end
     def self.with_email(email)
       filter(email: email.to_s.downcase).first
+    end
+
+    def self.tent_campers
+      filter(tent: true)
+    end
+
+    def self.bunk_campers
+      filter(tent: false)
     end
 
     def needs_extras?
@@ -277,7 +287,7 @@ class Thirteen < Sinatra::Base
       when "/register", %w{^/pay}
         ensure_host! "secure.ruby.org.au", 'https', 302
       else
-        ensure_host! "syd14.railscamps.org", 'http', 301
+        ensure_host! "bne15.railscamps.org", 'http', 301
       end
     end
   end
@@ -286,8 +296,8 @@ class Thirteen < Sinatra::Base
   class Pin
     include HTTParty
     format :json
-    base_uri Railscamp::Thirteen.settings.pin[:api_root]
-    basic_auth Railscamp::Thirteen.settings.pin[:secret_key], ''
+    base_uri Railscamp::Fifteen.settings.pin[:api_root]
+    basic_auth Railscamp::Fifteen.settings.pin[:secret_key], ''
   end
 
   class EntrantCharger
@@ -307,7 +317,7 @@ class Thirteen < Sinatra::Base
     def params(entrant)
       {
         email: entrant.email,
-        description: "Railscamp XIV Sydney",
+        description: "Railscamp XV Brisbane",
         amount: TICKET_PRICE_CENTS,
         currency: TICKET_PRICE_CURRENCY,
         ip_address: entrant.ip_address,
@@ -320,7 +330,7 @@ class Thirteen < Sinatra::Base
   class PinCharger
     def initialize(param_overrides = {})
       @default_params = {
-        description: "Railscamp XIII Melbourne",
+        description: "Railscamp XV Brisbane",
         amount: TICKET_PRICE_CENTS,
         currency: TICKET_PRICE_CURRENCY,
       }.merge(param_overrides)
@@ -362,6 +372,8 @@ class Thirteen < Sinatra::Base
   end
 
   get '/register' do
+    @tents_available = (Entrant.tent_campers.count < TENT_TICKETS)
+    puts "DSFARGEG #{Entrant.tent_campers.count} - #{@tents_available}"
     erb :register
   end
   get '/scholarship' do
@@ -419,7 +431,7 @@ class Thirteen < Sinatra::Base
 
     # Try to charge their card
     begin
-      PinCharger.new(description: "Railscamp XIV Bedding", amount: 12_00).charge!(@bedding_payment)
+      PinCharger.new(description: "Railscamp XV Bedding", amount: 12_00).charge!(@bedding_payment)
     rescue Exception => e
       STDERR.puts "Charge error: #{e.inspect}"
       @errors = @bedding_payment.errors
