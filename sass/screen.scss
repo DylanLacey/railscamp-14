@@ -153,17 +153,17 @@ input[type='radio'] {
 
 .camp-location { text-decoration: underline; }
 
+.coc { text-decoration: underline; }
+
 .register-button { @extend .button; font-size: 1.5em; background: #5B5B5B; }
 
 input[type="radio"], input[type="radio"] + label { display: inline; }
 input[type="radio"] + label { margin-left: .5em; width: 40%; }
 
-
 .errors { color: #fee; margin: 1em 0; }
 
 .registration-agreement { text-align: right; float: left; }
 .register-button { float: right; }
-
 
 .alternate-entry-button { margin: 1em 0 }
 

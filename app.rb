@@ -406,7 +406,6 @@ class Fifteen < Sinatra::Base
     erb :thanks
   end
 
-
   get '/pay_for_bedding' do
     @bedding_payment = BeddingPayment.new
     erb(:pay_for_bedding)
