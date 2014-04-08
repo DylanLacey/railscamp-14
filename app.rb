@@ -60,15 +60,15 @@ class Fifteen < Sinatra::Base
       TrueClass :wants_bus, null: false
       TrueClass :tent, null: false, default: false
 
-      String :cc_name, null: false
-      String :cc_address, null: false
-      String :cc_city, null: false
-      String :cc_post_code, null: false
-      String :cc_state, null: false
-      String :cc_country, null: false
-      String :card_token, null: false
+      String :cc_name
+      String :cc_address
+      String :cc_city
+      String :cc_post_code
+      String :cc_state
+      String :cc_country
+      String :card_token
 
-      String :ip_address, null: false
+      String :ip_address
       Time   :chosen_at
       Time   :chosen_notified_at
     end
