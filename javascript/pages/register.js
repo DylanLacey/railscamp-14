@@ -1,32 +1,32 @@
-define(["utils/dom", "pinjs", "domReady"], function(utils, pinjs, domReady) {
+define(["utils/dom", "domReady"], function(utils, domReady) {
 
   var $ = utils.$,
       $$ = utils.$$;
 
-  function init() {
-    pinjs(function(Pin) {
-      var form = $('form');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
+  // function init() {
+  //   pinjs(function(Pin) {
+  //     var form = $('form');
+  //     form.addEventListener('submit', function(e) {
+  //       e.preventDefault();
 
-        var cancelBusyIndicator = showBusyIndicator(form);
-        clearErrors();
+  //       var cancelBusyIndicator = showBusyIndicator(form);
+  //       clearErrors();
 
-        var card = pinCardAttributes(form);
+  //       var card = pinCardAttributes(form);
 
-        Pin.createToken(card, function(response) {
-          if (response.response) {
-            appendCardToken(form, response);
-            form.submit();
-          } else {
-            cancelBusyIndicator();
-            showPinError(form, response.error_description, response.messages);
-          }
-        });
+  //       Pin.createToken(card, function(response) {
+  //         if (response.response) {
+  //           appendCardToken(form, response);
+  //           form.submit();
+  //         } else {
+  //           cancelBusyIndicator();
+  //           showPinError(form, response.error_description, response.messages);
+  //         }
+  //       });
 
-      }, false);
-    });
-  }
+  //     }, false);
+  //   });
+  // }
 
   function clearErrors(form) {
     var errors = $(".errors", form);
