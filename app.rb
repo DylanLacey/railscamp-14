@@ -128,14 +128,14 @@ class Fifteen < Sinatra::Base
   class Entrant < Sequel::Model
     PUBLIC_ATTRS = [
       :name, :email, :dietary_reqs, :wants_bus,
-      :cc_name, :cc_address, :cc_city, :cc_post_code, :cc_state, :cc_country,
-      :card_token, :ip_address,
       :ticket_type, :notes,
       :wants_bedding, :tshirt_size, :tent
     ]
 
     CHARGE_ATTRS = [ :charge_token ]
-    OPTIONAL_ATTRS = [ :notes, :ticket_type, :wants_bedding, :tshirt_size, :dietary_reqs ]
+    OPTIONAL_ATTRS = [ :notes, :ticket_type, :wants_bedding, :tshirt_size, :dietary_reqs,
+                       :cc_name, :cc_address, :cc_city, :cc_post_code, :cc_state, :cc_country,
+                       :card_token, :ip_address ]
 
     set_allowed_columns *[ PUBLIC_ATTRS, CHARGE_ATTRS ].flatten
     plugin :validation_helpers
