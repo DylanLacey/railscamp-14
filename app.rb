@@ -285,7 +285,7 @@ class Fifteen < Sinatra::Base
     before do
       case request.path
       when "/register", %w{^/pay}
-        ensure_host! "secure.ruby.org.au", 'https', 302
+        ensure_host! "railscamp.herokuapp.com", 'http', 302
       else
         ensure_host! "railscamp.herokuapp.com", 'http', 301
       end
