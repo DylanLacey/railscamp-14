@@ -373,7 +373,6 @@ class Fifteen < Sinatra::Base
 
   get '/register' do
     @tents_available = (Entrant.tent_campers.count < TENT_TICKETS)
-    puts "DSFARGEG #{Entrant.tent_campers.count} - #{@tents_available}"
     erb :register
   end
   get '/scholarship' do
