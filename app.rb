@@ -284,7 +284,7 @@ class Fifteen < Sinatra::Base
       when "/register", %w{^/pay}
         ensure_host! "bne15.herokuapp.com", 'http', 302
       else
-        ensure_host! "bne15.herokuapp.com", 'http', 301
+        ensure_host! "bne15.railscamps.org", 'http', 301
       end
     end
   end
