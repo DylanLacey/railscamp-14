@@ -136,8 +136,9 @@ class Fifteen < Sinatra::Base
     OPTIONAL_ATTRS = [ :notes, :ticket_type, :wants_bedding, :tshirt_size, :dietary_reqs,
                        :cc_name, :cc_address, :cc_city, :cc_post_code, :cc_state, :cc_country,
                        :card_token, :ip_address ]
+    PAYMENT_ATTRS = [ :cc_name, :cc_address, :cc_city, :cc_post_code, :cc_state, :cc_country, :card_token, :ip_address]
 
-    set_allowed_columns *[ PUBLIC_ATTRS, CHARGE_ATTRS ].flatten
+    set_allowed_columns *[ PUBLIC_ATTRS, CHARGE_ATTRS, PAYMENT_ATTRS ].flatten
     plugin :validation_helpers
 
     def self.submitted_before_deadline
@@ -414,6 +415,22 @@ class Fifteen < Sinatra::Base
   get '/tent-✌' do
     @tent = true
     erb :thanks
+  end
+
+  get '/pay_for_camp' do
+    STDERR.puts "Emailing: #{params[:email]}"
+    @entrant = Entrant.filter(:email => params[:email]).first
+    erb :pay_for_camp
+  end
+
+  post '/pay_for_camp' do
+    STDERR.puts JSON.generate(params)
+
+    email = params.delete 'email'
+    @entrant = Entrant.filter(:email => email).first
+    STDERR.puts "Entrant #{@entrant}"
+    @entrant.update(params)
+    erb :all_set
   end
 
   get '/pay_for_bedding' do

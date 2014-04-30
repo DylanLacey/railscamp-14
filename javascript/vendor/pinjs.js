@@ -34,16 +34,18 @@ define(function() {
   function pinjs(callback, errback) {
     var apiAttr = 'data-pin-api',
         api = document.documentElement.getAttribute(apiAttr),
-        host = (api == 'live') ? 'api.pin.net.au' : 'test-api.pin.net.au',
-        url = "https://" + host + "/pin.js";
+        host = 'cdn.pin.net.au',
+        url = "https://" + host + "/pin.v2.js";
 
     var keyAttr = 'data-pin-publishable-key',
         key = document.documentElement.getAttribute(keyAttr);
 
     require([url],
-      function() {
-        Pin.setPublishableKey(key);
-        callback(Pin);
+      function(Pin) {
+        console.log("Loaded PIN");
+        var pin = new Pin.Api(key, api);
+        console.log("Created new API");
+        callback(pin);
       },
       errback
     );

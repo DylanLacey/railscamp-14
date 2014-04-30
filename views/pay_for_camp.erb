@@ -1,0 +1,22 @@
+<%
+  @page_class = "register"
+  @page_title = "Pay For Camp"
+%>
+
+<%= partial :_header_banner %>
+
+<section class="grid" role="main">
+
+  <% if @errors %>
+    <%= partial :_rego_errors %>
+  <% else %>
+    <h1>Hey <%= @entrant.email %>, lets sort out payment.</h1>
+  <% end %>
+
+  <form method="post">
+      <input id="email" name="email" type="hidden" value=<%="\"#{@entrant.email}\""%>>
+    <%= partial :_card_details, payment_model: @entrant %>
+    <%= partial :_register_button, info: 'This card will be charged $245', action: 'Pay' %>
+  </form>
+
+</section>
