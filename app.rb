@@ -282,8 +282,7 @@ class Fifteen < Sinatra::Base
   configure :production do
     before do
       case request.path
-      when "/register", %w{^/pay}
-        STDERR.puts "Ensuring herokuapp host"
+      when "/pay_for_camp"
         ensure_host! "bne15.herokuapp.com", 'https', 302
       else
         ensure_host! "bne15.railscamps.org", 'http', 301
