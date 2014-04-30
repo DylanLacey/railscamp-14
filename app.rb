@@ -313,10 +313,18 @@ class Fifteen < Sinatra::Base
       end
     end
     def params(entrant)
+      total_price = TICKET_PRICE_CENTS
+      description = "Railscamp XV Brisbane"
+
+      if entrant.wants_bedding
+        total_price = total_price + 2000
+        description = "#{description} (inc. Linen)"
+      end
+
       {
         email: entrant.email,
-        description: "Railscamp XV Brisbane",
-        amount: TICKET_PRICE_CENTS,
+        description: description,
+        amount: total_price,
         currency: TICKET_PRICE_CURRENCY,
         ip_address: entrant.ip_address,
         card_token: entrant.card_token

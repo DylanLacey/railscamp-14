@@ -11,12 +11,23 @@
     <%= partial :_rego_errors %>
   <% else %>
     <h1>Hey <%= @entrant.email %>, lets sort out payment.</h1>
+
+    <p>For people who prefer, we can organize Linen hire for camp, and save
+    	you bringing your own.</p>
+
+    <p>It's $20 to hire a set (sheets, blanket, pillowcase, pillow, towel) and we need to have orders placed by midnight on Sunday.</p>
   <% end %>
 
   <form method="post">
       <input id="email" name="email" type="hidden" value=<%="\"#{@entrant.email}\""%>>
+      <fieldset>
+  	  	<input id="wants_bedding" type="radio" name="wants_bedding" value="true" required>
+  		<label for"wants_bedding">I want to rent bedding for $20</label>
+  	  	<input id="no_bedding" type="radio" name="wants_bedding" value="false" required>
+  		<label for"no_bedding">I'll bring my own</label>
+      </fieldset>
     <%= partial :_card_details, payment_model: @entrant %>
-    <%= partial :_register_button, info: 'This card will be charged $245', action: 'Pay' %>
+    <%= partial :_register_button, info: 'This card will be charged $245 ($265 with Linen hire)', action: 'Pay' %>
   </form>
 
 </section>
