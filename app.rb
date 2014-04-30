@@ -282,7 +282,7 @@ class Fifteen < Sinatra::Base
   configure :production do
     before do
       case request.path
-      when "/register", %w{^/pay}
+      when "/register", /^\/pay/
         STDERR.puts "Redirecting for SSLs"
         ensure_host! "bne15.herokuapp.com", 'https', 302
       else
