@@ -274,7 +274,7 @@ class Fifteen < Sinatra::Base
 
     def ensure_host!(host, scheme, status)
       unless request.host == host && request.scheme == scheme
-        redirect "#{scheme}://#{host}#{request.path}", status
+        redirect "#{scheme}://#{host}#{request.fullpath}", status
       end
     end
   end
@@ -283,7 +283,6 @@ class Fifteen < Sinatra::Base
     before do
       case request.path
       when "/register", %w{^/pay}
-        STDERR.puts "Ensuring herokuapp"
         ensure_host! "bne15.herokuapp.com", 'https', 302
       else
         ensure_host! "bne15.railscamps.org", 'http', 301
