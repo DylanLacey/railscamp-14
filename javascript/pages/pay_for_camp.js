@@ -12,7 +12,7 @@ define(["utils/dom", "pinjs", "domReady"], function(utils, pinjs, domReady) {
       };
 
       var errback = function(response) {
-        cancelBusyIndicator();
+        showBusyIndicator(form);
         showPinError(form, response.error_description, response.messages);
       };
 
@@ -20,7 +20,6 @@ define(["utils/dom", "pinjs", "domReady"], function(utils, pinjs, domReady) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        var cancelBusyIndicator = showBusyIndicator(form);
         clearErrors();
 
         var card = pinCardAttributes(form);
