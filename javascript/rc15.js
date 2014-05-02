@@ -5,7 +5,7 @@ define(["modernizr", "prefixfree", "services/typekit", "services/google_analytic
     googleAnalytics();
 
     // Ghetto router
-    if (window.location.pathname == '/pay_for_camp') {
+    if (window.location.pathname == '/pay_for_camp' || window.location.pathname == '/register') {
       payForCamp();
     }
   }

@@ -446,6 +446,8 @@ body {
     font-weight: 700; }
   .ticket-info .price-buys {
     font-size: .8em; }
+  .ticket-info p {
+    background: #5B5B5B; }
 
 .ballot-info p, .ballot-info h1, .ballot-info h2 {
   background: rgba(28, 28, 28, 0.5); }

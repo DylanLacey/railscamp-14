@@ -17,50 +17,42 @@
       </ol>
     </div>
   <% else %>
-    <h1>Enter the Bunk Ballot</h1>
+    <h1>I Wanna Come!</h1>
 
-    <p>Bunks are available to attendees on a ballot basis.</p>
+    <p>Great!  We're super pumped you're keen to come to RailsCamp.  Fill in the form below and you'll be on your way!</p>
 
-    <p>To enter the ballot, fill your personal and payment details in below. Your details will be stored securely by pin.net.au.</p>
+    <p>You can choose to camp in a tent or a bunk;  Whatever you'd prefer.  We've got a linen hire service (Including a sheet, blanket, pillow, pillowcase and towels) for $20 if you'd prefer not to have to bring them to camp.</p>
 
-    <p>We'll randomly allocate the available tickets after the ballot is closed. Successful railscampers will be charged at that time and notified.  </p>
+    <h1>Transport to Camp</h1>
+    The bus leaves for camp at 4pm on Friday, from QPAC on Stanley Street, Southbank;  Return bus is 9:30am on Monday, to both the Airport and Southbank.  Expect to be at the Airport no earlier then 10:15am (The trip takes 35 minutes).</p>
 
-    <p>If you're unsuccessful, you won't be charged, Pin will conveniently forget your payment details, and we'll email you the bad news.</p>
-
-    <p>You have until <strong>midnight (AEST) on Monday April 14</strong> to enter the ballot.</p>
-
-    <h1>Take a Tent Ticket</h1>
-
-    <% if @tents_available %>
-    <p>You can bring your own tent and bedding to camp, and your ticket will be allocated immediately upon registration.</p>
-
-    <p>Once they're all allocated that's it!  No more tent tickets are available.</p>
-    <% else %>
-    <p>Tent tickets are sold out!  Sorry, you'll have to try your luck in the bunk ballot.</p>
-    <% end %>
+    <p>Attendees are also welcome to <a href="https://www.google.com/maps/place/Kindilan+Outdoor+Education+%26+Conference+Centre/@-27.6293899,153.2833767,18z/data=!4m2!3m1!1s0x0:0xe6d7fb4df49931c1">drive</a></p>
 
     <h1>Payment</h1>
-    <p>We're still sorting out a few niggles with payments;  Once we've sorted things out, all entrants will be emailed asking them to enter payment details.</p>
-
-    <p>Once the ballot is closed and allocated, you'll be charged safely and securely by pin.net.au</p>
-
-    <p>We're also offering a number of scholarship tickets.
-    <a href="/scholarship" class="button alternate-entry-button">Apply for a scholarship</a></p>
+    <p>Payment is by credit card, safely and securely handled by Pin Payments.</p>
 
     <p>All entrants agree to abide by the <a class='coc' href="http://ruby.org.au/code-of-conduct.html" target="_blank">Code of Conduct</a>, backed up by our friendly and easily accessed team of organizers.</p>
   <% end %>
 
   <form method="post">
     <div class="ticket-info">
-      <div class="price">$245</div>
-      <div class="price-buys">Includes accomodation &amp; meals</div>
+      <div class="price">$245 (+ $20 w/ Linen)</div>
+      <div class="price-buys">Includes accomodation &amp; meals;</div>
     </div>
 
     <%= partial :_form_common %>
 
+    <fieldset>
+        <input id="wants_bedding" type="radio" name="entrant[wants_bedding]" value="true" required>
+      <label for"wants_bedding">I want to rent bedding for $20</label>
+        <input id="no_bedding" type="radio" name="entrant[wants_bedding]" value="false" required>
+      <label for"no_bedding">I'll bring my own</label>
+      </fieldset>
+    <%= partial :_card_details, payment_model: @entrant, payment_model_name: 'entrant' %>
+
     <fieldset class="registration">
       <div class="registration-agreement">
-        You'll be billed $245,<br>
+        You'll be billed $245 (plus linen, if requested),<br>
         <em>only</em> if you receive a ticket.
       </div>
       <button class="register-button" data-busy-text="Hold tight...">Go Go Go!</button>

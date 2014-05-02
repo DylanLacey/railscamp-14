@@ -380,6 +380,7 @@ class Fifteen < Sinatra::Base
 
   get '/register' do
     @tents_available = (Entrant.tent_campers.count < TENT_TICKETS)
+    @entrant = Entrant.new
     erb :register
   end
   get '/scholarship' do
